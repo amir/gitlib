@@ -141,7 +141,7 @@ textToSha :: Monad m => Text -> m SHA
 textToSha t =
     case B16.decode $ T.encodeUtf8 t of
         (bs, "") -> return (SHA bs)
-        _ -> fail "Invalid base16 encoding"
+        _ -> error "Invalid base16 encoding"
 
 instance IsOid SHA where
     renderOid = shaToText
